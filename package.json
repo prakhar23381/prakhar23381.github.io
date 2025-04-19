@@ -2,11 +2,16 @@
   "name": "my-v0-project",
   "version": "0.1.0",
   "private": true,
+  "devDependencies": {
+    "gh-pages": "^6.0.0"
+  },
   "scripts": {
     "dev": "next dev",
     "build": "next build",
+    "export": "next export",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "deploy": "gh-pages -d out"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.1",
