@@ -5,7 +5,8 @@ import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
 import CustomCursor from "@/components/custom-cursor"
 import HeroSection from "@/components/hero-section"
-import ProjectsCarousel from "@/components/projects-carousel"
+import ProjectsCarousel from "../components/projects-carousel";
+import AltProjectsSection from "../components/alt-projects-section";
 import ContactSection from "@/components/contact-section"
 import Header from "@/components/header"
 
@@ -57,6 +58,13 @@ export default function Home() {
         </div>
         <div className="h-full w-full flex items-center justify-center">
           <ProjectsCarousel />
+        </div>
+      </section>
+
+      {/* Projects Section */}
+      <section className="h-screen relative bg-black">
+        <div className="h-full w-full flex items-center justify-center">
+          <AltProjectsSection />
         </div>
       </section>
 
