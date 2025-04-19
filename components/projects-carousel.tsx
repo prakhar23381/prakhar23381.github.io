@@ -75,10 +75,10 @@ export default function ProjectsCarousel() {
     if (!carouselRef.current) return
 
     // Calculate the position to center the active item
-    const scrollPosition = activeIndex * (320 + 20) // item width + gap
+    const scrollPosition = activeIndex * (448 + 20) // item width + gap
 
     gsap.to(carouselRef.current, {
-      x: -scrollPosition + (window.innerWidth / 2 - 160), // Center the active item
+      x: -scrollPosition + (window.innerWidth / 2 - 224), // Center the active item
       duration: 0.8,
       ease: "power2.out",
     })
@@ -104,14 +104,14 @@ export default function ProjectsCarousel() {
           <div
             key={project.id}
             ref={(el) => { itemsRef.current[index] = el; }}
-            className="w-80 h-96 flex-shrink-0 bg-black border border-white/20 rounded-lg overflow-hidden transition-all cursor-pointer"
+            className="w-[28rem] h-[36rem] flex-shrink-0 bg-white border border-white/20 rounded-2xl overflow-hidden transition-all cursor-pointer"
             onClick={() => handleProjectClick(index)}
             style={{
               opacity: index === activeIndex ? 1 : 0.4,
               transform: `scale(${index === activeIndex ? 1.1 : 0.9})`,
             }}
           >
-            <div className="relative w-full h-64">
+            <div className="relative w-full h-[30rem]">
               <Image
                 src={project.image || "/placeholder.svg"}
                 alt={project.title}
@@ -119,7 +119,7 @@ export default function ProjectsCarousel() {
                 className="object-cover grayscale"
               />
             </div>
-            <div className="p-4">
+            <div className="p-2 h-16 flex flex-col justify-center bg-gradient-to-b from-black to-white">
               <h3 className="text-xl font-bold mb-2">{project.title}</h3>
               <p className="text-sm text-white/70">{project.description}</p>
             </div>
