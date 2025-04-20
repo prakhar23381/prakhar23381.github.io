@@ -51,15 +51,8 @@ export default function Home() {
         </div>
       </section>
 
-      {/* Projects Section */}
-      <section className="h-screen relative bg-black">
-        <div className="absolute top-10 left-10 z-10">
-          <h2 className="text-3xl font-bold">Projects</h2>
-        </div>
-        <div className="h-full w-full flex items-center justify-center">
-          <ProjectsCarousel />
-        </div>
-      </section>
+      {/* Spacer Section */}
+      <div className="h-32" />
 
       {/* Projects Section */}
       <section className="h-screen relative bg-black">
