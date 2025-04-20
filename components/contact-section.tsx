@@ -5,46 +5,36 @@ import { gsap } from "gsap"
 import { Github, Linkedin, Instagram, Youtube, Mail, DribbbleIcon as Behance, Twitter } from "lucide-react"
 
 const socialLinks = [
-  {
-    name: "GitHub",
-    icon: Github,
-    url: "https://github.com/",
-    color: "#ffffff",
-  },
+
   {
     name: "LinkedIn",
     icon: Linkedin,
-    url: "https://linkedin.com/in/",
+    url: "https://www.linkedin.com/in/prakhar-saxena-6390b6248/",
     color: "#ffffff",
   },
   {
     name: "Instagram",
     icon: Instagram,
-    url: "https://instagram.com/",
+    url: "https://www.instagram.com/prkhr.05/",
     color: "#ffffff",
   },
   {
     name: "Behance",
     icon: Behance,
-    url: "https://behance.net/",
+    url: "https://behance.net/prakharsaxena8",
     color: "#ffffff",
   },
-  {
-    name: "Twitter",
-    icon: Twitter,
-    url: "https://twitter.com/",
-    color: "#ffffff",
-  },
+
   {
     name: "YouTube",
     icon: Youtube,
-    url: "https://youtube.com/",
+    url: "https://www.youtube.com/@prkhr.05",
     color: "#ffffff",
   },
   {
     name: "Email",
     icon: Mail,
-    url: "mailto:prakhar@example.com",
+    url: "mailto:prakhar.ashish.saxena@gmail.com",
     color: "#ffffff",
   },
 ]

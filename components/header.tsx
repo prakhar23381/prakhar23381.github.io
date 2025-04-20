@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react"
 import { gsap } from "gsap"
+import PixelatedText from "../app/pixelated-text"
 
 interface HeaderProps {
   visible: boolean
@@ -27,7 +28,7 @@ export default function Header({ visible }: HeaderProps) {
       className="fixed top-0 left-0 w-full h-20 bg-black z-40 flex items-center justify-between px-10"
       style={{ opacity: 0, transform: "translateY(-100px)" }}
     >
-      <div className="text-2xl font-bold">PRAKHAR</div>
+      <PixelatedText text="PRAKHAR" className="text-2xl font-bold" />
 
       <div className="flex items-center gap-6">
         <button className="px-4 py-2 border border-white rounded-full hover:bg-white hover:text-black transition-colors">

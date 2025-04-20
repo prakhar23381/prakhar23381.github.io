@@ -2,9 +2,7 @@
 
 import { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
-import { Canvas } from "@react-three/fiber"
-import { Text3D, Center, Environment } from "@react-three/drei"
-import type * as THREE from "three" // Import THREE
+import PixelatedText from "../app/pixelated-text"
 
 // Rotating text component
 function RotatingText() {
@@ -150,14 +148,9 @@ export default function HeroSection() {
 
   return (
     <div ref={sectionRef} className="w-full h-full relative">
-      <div className="absolute inset-0">
-        <Canvas camera={{ position: [0, 0, 5], fov: 75 }}>
-          <ambientLight intensity={0.5} />
-          <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
-          <AnimatedName />
-          <Environment preset="studio" />
-        </Canvas>
-      </div>
+      <div className="absolute inset-0 flex items-center justify-center">
+  <PixelatedText text="PRAKHAR" className="text-6xl font-bold" />
+</div>
 
       <div ref={textContainerRef} className="absolute bottom-32 left-1/2 transform -translate-x-1/2 text-center">
         <RotatingText />
