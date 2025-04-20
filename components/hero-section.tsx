@@ -3,6 +3,9 @@
 import { useEffect, useRef, useState } from "react"
 import { gsap } from "gsap"
 import PixelatedText from "../app/pixelated-text"
+import { Canvas } from "@react-three/fiber"
+import { Text3D, Center, Environment } from "@react-three/drei"
+import * as THREE from "three"
 
 // Rotating text component
 function RotatingText() {
@@ -19,11 +22,11 @@ function RotatingText() {
 
   return (
     <div className="flex items-center justify-center h-8 overflow-hidden">
-      <div className="relative">
+      <div className="relative w-40 flex justify-center">
         {titles.map((title, index) => (
           <div
             key={title}
-            className={`absolute left-0 transition-all duration-500 ${
+            className={`absolute left-1/2 -translate-x-1/2 transition-all duration-500 ${
               index === currentIndex ? "opacity-100 transform-none" : "opacity-0 -translate-y-4"
             }`}
           >
@@ -41,46 +44,44 @@ function AnimatedName() {
   const [mounted, setMounted] = useState(false)
   const textRef = useRef<THREE.Mesh>(null)
   const [width, setWidth] = useState(0)
+  const materialRef = useRef<THREE.MeshStandardMaterial>(null)
 
   useEffect(() => {
     setMounted(true)
   }, [])
 
   useEffect(() => {
-    if (!mounted || !textRef.current) return
+    if (!mounted || !textRef.current) return;
 
-    const geometry = textRef.current.geometry
-    geometry.computeBoundingBox()
-    const boundingBox = geometry.boundingBox
-    if (!boundingBox) return
-    const calculatedWidth = boundingBox.max.x - boundingBox.min.x
-    setWidth(calculatedWidth)
+    const geometry = textRef.current.geometry;
+    geometry.computeBoundingBox();
+    const boundingBox = geometry.boundingBox;
+    if (!boundingBox) return;
+    const calculatedWidth = boundingBox.max.x - boundingBox.min.x;
+    setWidth(calculatedWidth);
 
-    gsap.to(textRef.current.rotation, {
-      y: Math.PI * 2,
-      duration: 20,
-      repeat: -1,
-      ease: "none",
-    })
-
-    // Floating animation
-    gsap.to(textRef.current.position, {
-      y: 0.2,
-      duration: 2,
+    // Gentle floating animation only
+    const floatTween = gsap.to(textRef.current.position, {
+      y: 0.3,
+      duration: 2.5,
       repeat: -1,
       yoyo: true,
       ease: "sine.inOut",
-    })
-  }, [mounted])
+    });
+
+    return () => {
+      floatTween.kill();
+    };
+  }, [mounted]);
 
   if (!mounted) return null;
   return (
     <Center>
       <Text3D
-        position={[-width / 2, 0, 0]} // width is the text width
+        position={[0, 0, 0]}
         ref={textRef}
         font="/fonts/helvetiker_bold.typeface.json"
-        size={2}
+        size={1}
         height={0.2}
         curveSegments={12}
         bevelEnabled
@@ -90,7 +91,13 @@ function AnimatedName() {
         bevelSegments={5}
       >
         PRAKHAR
-        <meshStandardMaterial color="white" />
+        <meshStandardMaterial
+          color="#00fff7"
+          emissive="#00fff7"
+          emissiveIntensity={0.9}
+          metalness={0.3}
+          roughness={0.2}
+        />
       </Text3D>
     </Center>
   )
@@ -147,10 +154,15 @@ export default function HeroSection() {
   }, [])
 
   return (
-    <div ref={sectionRef} className="w-full h-full relative">
+    <div ref={sectionRef} className="w-full min-h-screen flex items-center justify-center relative">
       <div className="absolute inset-0 flex items-center justify-center">
-  <PixelatedText text="PRAKHAR" className="text-6xl font-bold" />
-</div>
+        <Canvas camera={{ position: [0, 0, 10], fov: 75 }}>
+          <ambientLight intensity={0.5} />
+          <spotLight position={[10, 10, 10]} angle={0.15} penumbra={1} />
+          <AnimatedName />
+          <Environment preset="studio" />
+        </Canvas>
+      </div>
 
       <div ref={textContainerRef} className="absolute bottom-32 left-1/2 transform -translate-x-1/2 text-center">
         <RotatingText />
