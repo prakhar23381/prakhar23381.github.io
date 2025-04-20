@@ -10,6 +10,7 @@ import AltProjectsSection from "../components/alt-projects-section";
 import ContactSection from "@/components/contact-section"
 import Header from "@/components/header"
 import ChatBot from "../components/Chatbot";
+import WebsiteRatingSection from "../components/website-rating-section";
 
 // Register GSAP plugins
 if (typeof window !== "undefined") {
@@ -66,6 +67,9 @@ export default function Home() {
       <section className="h-screen flex items-center justify-center relative">
         <ContactSection />
       </section>
+
+      {/* Website Rating Section */}
+      <WebsiteRatingSection />
       <ChatBot />
     </main>
   )
